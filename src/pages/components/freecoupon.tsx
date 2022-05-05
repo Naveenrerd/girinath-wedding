@@ -19,7 +19,7 @@ const FreeCoupon: React.FC = () => {
       <Button
         variant="contained"
         onClick={handleClickOpen}
-        sx={{ backgroundColor: "#fa5b3d" }}
+        sx={{ backgroundColor: "#fa5b3d", fontWeight: 700, fontSize: 18 }}
       >
         Click here for ₹500 free voucher
       </Button>

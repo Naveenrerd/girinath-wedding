@@ -13,9 +13,9 @@ const TimerBox: React.FC<{ unit: number; text: string }> = ({
   unit: number;
   text: string;
 }) => (
-  <Box sx={{ margin: "auto", minWidth: "250px" }}>
+  <Box sx={{ margin: "auto", maxWidth: "250px" }}>
     <FlipperTime time={unit} />
-    <Typography variant="h6" color="white">
+    <Typography variant="h6" color="#fff">
       {text}
     </Typography>
   </Box>
@@ -56,12 +56,12 @@ const Countdown: React.FC = () => {
 
   return (
     <Box>
-      <Typography variant="h3" sx={{}} gutterBottom color="#e3edf5">
-        Aprox countdown till{" "}
-        <strong style={{ color: "white" }} color="white">
-          Giri
-        </strong>{" "}
-        gets laid
+      <Typography
+        variant="h3"
+        gutterBottom
+        sx={{ fontWeight: 400, color: "#7DF9FF" }}
+      >
+        Countdown till <strong>Giri</strong> gets laid
       </Typography>
       <Box
         sx={{
@@ -69,6 +69,7 @@ const Countdown: React.FC = () => {
           justifyContent: "space-evenly",
           margin: "auto",
           width: "100%",
+          flexWrap: "wrap",
         }}
       >
         <TimerBox unit={timeSet.day} text="Days" />
