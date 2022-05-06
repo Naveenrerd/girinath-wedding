@@ -6,6 +6,36 @@ import FlipperTime from "./flipperTime";
 
 dayjs.extend(relativeTime);
 
+export interface ITimeLeft {
+  day: number;
+  hour: number;
+  minute: number;
+  seconds: number;
+}
+
+const getTimeLeft = (): ITimeLeft => {
+  const today = dayjs();
+  let weddingDay = dayjs("2022-09-09").endOf("day");
+
+  const diffDays = weddingDay.diff(today, "d");
+  weddingDay = weddingDay.subtract(diffDays, "d");
+
+  const diffHrs = weddingDay.diff(today, "h");
+  weddingDay = weddingDay.subtract(diffHrs, "h");
+
+  const diffMins = weddingDay.diff(today, "m");
+  weddingDay = weddingDay.subtract(diffMins, "m");
+
+  const diffSec = weddingDay.diff(today, "s");
+
+  return {
+    day: diffDays,
+    hour: diffHrs,
+    minute: diffMins,
+    seconds: diffSec,
+  };
+};
+
 const TimerBox: React.FC<{ unit: number; text: string }> = ({
   unit,
   text,
@@ -22,35 +52,11 @@ const TimerBox: React.FC<{ unit: number; text: string }> = ({
 );
 
 const Countdown: React.FC = () => {
-  const [timeSet, setTimeSet] = useState({
-    day: 0,
-    hour: 0,
-    minute: 0,
-    seconds: 0,
-  });
+  const [timeLeft, setTimeLeft] = useState<ITimeLeft>(getTimeLeft());
 
   useEffect(() => {
     setInterval(() => {
-      const today = dayjs();
-      let weddingDay = dayjs("2022-09-09").endOf("day");
-
-      const diffDays = weddingDay.diff(today, "d");
-      weddingDay = weddingDay.subtract(diffDays, "d");
-
-      const diffHrs = weddingDay.diff(today, "h");
-      weddingDay = weddingDay.subtract(diffHrs, "h");
-
-      const diffMins = weddingDay.diff(today, "m");
-      weddingDay = weddingDay.subtract(diffMins, "m");
-
-      const diffSec = weddingDay.diff(today, "s");
-
-      setTimeSet({
-        day: diffDays,
-        hour: diffHrs,
-        minute: diffMins,
-        seconds: diffSec,
-      });
+      setTimeLeft(getTimeLeft());
     }, 1000);
   }, []);
 
@@ -72,10 +78,10 @@ const Countdown: React.FC = () => {
           flexWrap: "wrap",
         }}
       >
-        <TimerBox unit={timeSet.day} text="Days" />
-        <TimerBox unit={timeSet.hour} text="Hours" />
-        <TimerBox unit={timeSet.minute} text="Minutes" />
-        <TimerBox unit={timeSet.seconds} text="Seconds" />
+        <TimerBox unit={timeLeft.day} text="Days" />
+        <TimerBox unit={timeLeft.hour} text="Hours" />
+        <TimerBox unit={timeLeft.minute} text="Minutes" />
+        <TimerBox unit={timeLeft.seconds} text="Seconds" />
       </Box>
     </Box>
   );
