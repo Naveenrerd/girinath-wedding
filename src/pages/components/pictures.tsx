@@ -29,7 +29,7 @@ const cardList: ICardData[] = [
   {
     pic: naveen,
     title: "Naveen Kumar",
-    bio: "Smart boy. Star of the group. Peacefully living in Kotagiri but constantly giving ideas to Gopi and Giri.",
+    bio: "Smart boy. Star of the group. Peacefully living in Kotagiri but constantly lending ideas to Gopi and Giri.",
   },
 ];
 
