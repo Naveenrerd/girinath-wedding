@@ -47,7 +47,7 @@ const Pictures: React.FC = () => {
       </Typography>
       <Carousel
         showArrows={true}
-        // infiniteLoop
+        infiniteLoop
         showStatus={false}
         centerMode
         showThumbs={false}

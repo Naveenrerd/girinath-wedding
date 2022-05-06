@@ -36,15 +36,13 @@ const getTimeLeft = (): ITimeLeft => {
   };
 };
 
-const TimerBox: React.FC<{ unit: number; text: string }> = ({
-  unit,
-  text,
-}: {
+const TimerBox: React.FC<{
   unit: number;
   text: string;
-}) => (
+  isInitial: boolean;
+}> = ({ unit, text, isInitial }) => (
   <Box sx={{ margin: "auto", maxWidth: "250px" }}>
-    <FlipperTime time={unit} />
+    <FlipperTime time={unit} isInitial={isInitial} />
     <Typography variant="h6" color="#fff">
       {text}
     </Typography>
@@ -53,9 +51,11 @@ const TimerBox: React.FC<{ unit: number; text: string }> = ({
 
 const Countdown: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<ITimeLeft>(getTimeLeft());
+  const [isInitial, setisInitial] = useState(true);
 
   useEffect(() => {
     setInterval(() => {
+      setisInitial(false);
       setTimeLeft(getTimeLeft());
     }, 1000);
   }, []);
@@ -78,10 +78,14 @@ const Countdown: React.FC = () => {
           flexWrap: "wrap",
         }}
       >
-        <TimerBox unit={timeLeft.day} text="Days" />
-        <TimerBox unit={timeLeft.hour} text="Hours" />
-        <TimerBox unit={timeLeft.minute} text="Minutes" />
-        <TimerBox unit={timeLeft.seconds} text="Seconds" />
+        <TimerBox unit={timeLeft.day} text="Days" isInitial={isInitial} />
+        <TimerBox unit={timeLeft.hour} text="Hours" isInitial={isInitial} />
+        <TimerBox unit={timeLeft.minute} text="Minutes" isInitial={isInitial} />
+        <TimerBox
+          unit={timeLeft.seconds}
+          text="Seconds"
+          isInitial={isInitial}
+        />
       </Box>
     </Box>
   );
