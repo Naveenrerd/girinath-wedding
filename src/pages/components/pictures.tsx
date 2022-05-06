@@ -36,7 +36,7 @@ const cardList: ICardData[] = [
 const Pictures: React.FC = () => {
   const [selectedItemnIndex, setselectedItemnIndex] = useState(0);
   return (
-    <Box mt={8} textAlign="left">
+    <Box sx={{ mt: 8, textAlign: "left" }}>
       <Typography
         gutterBottom
         variant="h5"

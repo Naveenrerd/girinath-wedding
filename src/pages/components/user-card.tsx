@@ -12,6 +12,7 @@ const UserCard: React.FC<IUserCard> = ({ isSelected, cardData }) => {
       sx={{
         transition: "all .5s linear",
         transform: isSelected ? "scale(1)" : "scale(0.90)",
+        textShadow: "none",
       }}
     >
       <Card>
