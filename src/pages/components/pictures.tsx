@@ -46,6 +46,7 @@ const Pictures: React.FC = () => {
         Bio:
       </Typography>
       <Carousel
+        autoPlay
         showArrows={true}
         infiniteLoop
         showStatus={false}
